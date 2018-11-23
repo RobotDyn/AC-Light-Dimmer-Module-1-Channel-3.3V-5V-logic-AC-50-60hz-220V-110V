@@ -10,7 +10,9 @@
  * Copyright (c) 2016 Circuitar 
  * This software is released under the MIT license. See the attached LICENSE file for details. 
  */  
-int button = 0; 
+int button14 = 0; 
+int button15 = 0; 
+
 Dimmer dimmer4 (4,  DIMMER_NORMAL);//Dimmer dimmer(PWM_PIN,  DIMMER_NORMAL) Z-C use D2 pin
 Dimmer dimmer5 (5,  DIMMER_NORMAL);//Dimmer dimmer(PWM_PIN,  DIMMER_NORMAL) Z-C use D2 pin
 int i = 0; 
@@ -47,14 +49,14 @@ void printSpace(int val)
 void loop() { 
 //для димминга потенциометром 
   ////////use for analog Potentiometer 
-  dim5 = map(analogRead(0), 0, 1024, 63, 15); // analogRead(analog_pin), min_analog, max_analog, 100%, 0%);
+  dim5 = map(analogRead(0), 0, 1024, 50, 10); // analogRead(analog_pin), min_analog, max_analog, 100%, 0%);
   Serial.println (dim5); 
   dimmer5.set(dim5); // dimmer.set(0%-100%)
 
-  button = digitalRead(14);
-  if (button == 1) setLamp = false;
-  else setLamp = true;
-  dimmer4.set(100, setLamp);
+  button14 = digitalRead(14);
+  button15 = digitalRead(15);
+  if (button14 == 0) dimmer4.set(63);
+  if (button15 == 0) dimmer4.set(0);   
   delay(50);
   Serial.println(setLamp);
 
