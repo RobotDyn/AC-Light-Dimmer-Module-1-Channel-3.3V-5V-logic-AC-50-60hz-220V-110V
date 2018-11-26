@@ -19,7 +19,7 @@ int dim5 = 0;
 void setup() { 
   Serial.begin(9600); 
   dimmer4.begin(); 
-  dimmer4.setMinimum(1);
+  //dimmer4.setMinimum(1);
   dimmer5.begin(); 
   dimmer5.setMinimum(1);
   Serial.println("Dimmer Program is starting...");
