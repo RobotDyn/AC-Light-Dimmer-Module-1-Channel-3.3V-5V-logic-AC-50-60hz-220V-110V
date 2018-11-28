@@ -1,15 +1,4 @@
 #include <Dimmer.h> //ссыдка на видоизмененную библиотеку //первоначальная библиоетка https://github.com/circuitar/Dimmer
- 
-/** 
- * Use count mode to switch the load on and off only when the AC voltage crosses zero. In this 
- * mode, the power is controlled by turning the triac on only for complete (half) cycles of the AC 
- * sine wave. The power delivery is adjusted by counting the number of cycles that are activated. 
- * This helps controlling higher, slower response loads (e.g. resistances) without introducing 
- * any triac switching noise on the line. 
- * 
- * Copyright (c) 2016 Circuitar 
- * This software is released under the MIT license. See the attached LICENSE file for details. 
- */  
 
 #define LAMPMAXVALUE 63
 int buttonRed = 0; 
@@ -72,59 +61,22 @@ void readButtonState()
 }
 
 void loop() { 
-//для димминга потенциометром 
-  ////////use for analog Potentiometer 
+
   dim5 = map(analogRead(0), 1, 1024, 100, 15); // analogRead(analog_pin), min_analog, max_analog, 100%, 0%);
   Serial.println (dim5); 
   dimmer5.set(dim5); // dimmer.set(0%-100%)
   int i =analogRead(0);
   Serial.println (1024-i);
   readButtonState();
-  
-  //dimmer4.set(mainLAMP, setLampState(stateL));  
+    
   dimmer4.set(mainLAMP);
   RiseFallLamp(setLampState(stateL));
   delay(25);
-  //Serial.println(setLamp);
-
-/*цикл постепенного включения-выключения  */ 
-//  dimmer.set(abs(val)); //dimmer.set(0%-100%)
-//  val++;
-//
-//вывод значений димминга на компорт
-  //Serial.print("lampValue -> ");
-//  printSpace(abs(dimmer.getValue()));
-  
+ 
   if (Serial.available()) 
   {
     Serial.flush();
     Serial.println(dimmer4.getValue());  
   }
-///////вывод значений димминга на компорт
-//  
-//  if (val > maxValue) val = minValue;
-//  delay(20);
-/*цикл постепенного включения-выключения  */
 
-/*управление через компорт 
-  pre_val = val;
-  
-  if (Serial.available())
-  {
-    int buf = Serial.parseInt();
-    if (buf != 0) val = buf;
-    delay(200);
-  }
-  dimmer.set(abs(val), true);
-
-  if (pre_val != val)
-  {
-    
-    Serial.print("% lampValue -> ");
-    printSpace(abs(dimmer.getValue()));
-    Serial.print(dimmer.getValue());  
-
-  }
-  delay(50);
-управление через компорт */
 }
