@@ -38,21 +38,21 @@ typedef enum
 #define OCRxAL(X) _OCRxAL(X)
 
 #elif defined(__AVR_ATmega32U4__)
-#define DIMMER_TIMER 3
+#define DIMMER_TIMER 1
 #define INT_vect INT1_vect
 #define INTx INT1
 #define EICRX EICRA
-#define ISCx1 ISC31
-#define ISCx0 ISC30
+#define ISCx1 ISC11
+#define ISCx0 ISC10
 
 #define TCCRxA_VALUE 0x00 // CTC mode
-#define TCCRxB_VALUE 0x0B // (1 << WGMx2)|(1 << CSx1)|(1 << CSx0)
+#define TCCRxB_VALUE 0x0A// 0b1011 (1 << WGMx2)|(1 << CSx1)|(1 << CSx0)
 #define OCRxAH_VALUE 0x00
-#define OCRxAL_VALUE 0x18
+#define OCRxAL_VALUE 0xB0
 
-#define _OCRxAH(X) OCR ## X ## A
+#define _OCRxAH(X) OCR ## X ## AH
 #define OCRxAH(X) _OCRxAH(X)
-#define _OCRxAL(X) OCR ## X ## A
+#define _OCRxAL(X) OCR ## X ## AL
 #define OCRxAL(X) _OCRxAL(X)
 
 #else
@@ -66,7 +66,7 @@ typedef enum
 #define TCCRxA_VALUE 0x02
 #define TCCRxB_VALUE 0x0A // 0b1010 // (1 << WGMx2)|(1 << CSx1)
 #define OCRxAH_VALUE 0x00
-#define OCRxAL_VALUE 0xF0
+#define OCRxAL_VALUE 0xFF
 
 #define _OCRxAH(X) OCR ## X ## A
 #define OCRxAH(X) _OCRxAH(X)

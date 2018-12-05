@@ -134,9 +134,9 @@ void dimmerLamp::begin(DIMMER_MODE_typedef DIMMER_MODE, ON_OFF_typedef ON_OFF)
 
 void dimmerLamp::setPower(int power)
 {	
-	if (power >= 100) 
+	if (power >= 99) 
 	{
-		power = 100;
+		power = 99;
 	}
 	dimPower[this->current_num] = power;
 	dimPulseBegin[this->current_num] = powerBuf[power];
@@ -195,7 +195,7 @@ void dimmerLamp::toggleSettings(int minValue, int maxValue)
 	togMin[this->current_num] = minValue;
 	togMax[this->current_num] = maxValue;
 
-	toggleReload = 25;
+	toggleReload = 50;
 }
 
 
