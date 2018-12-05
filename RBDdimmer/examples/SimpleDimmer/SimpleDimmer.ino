@@ -15,9 +15,8 @@ void loop() {
   if (digitalRead(5) == 1) 
   {
     dimmer1.changeState(); //changes state on the opposite: name.changeState(); 
-    Serial.print("Dimmer state: ");
-    Serial.println(dimmer1.getState());
   }
+  Serial.print("Dimmer state: ");
+  Serial.println(dimmer1.getState());
   delay(1000);
-  
 }
