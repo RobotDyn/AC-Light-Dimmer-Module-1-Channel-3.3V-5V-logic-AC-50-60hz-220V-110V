@@ -192,8 +192,8 @@ void dimmerLamp::toggleSettings(int minValue, int maxValue)
     	minValue = 1;
 	}
 	dimMode[this->current_num] = TOGGLE_MODE;
-	togMin[this->current_num] = minValue;
-	togMax[this->current_num] = maxValue;
+	togMin[this->current_num] = powerBuf[maxValue];
+	togMax[this->current_num] = powerBuf[minValue];
 
 	toggleReload = 50;
 }
